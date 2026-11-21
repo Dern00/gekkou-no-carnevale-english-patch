@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="250" viewBox="0 0 1000 250" role="img" aria-labelledby="title description">
+  <title id="title">Gekkou no Carnevale</title>
+  <desc id="description">English translation patch. Gold lettering beside Venetian Gothic arches and their reflections under a moonlit sky.</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#170d19"/>
+      <stop offset=".55" stop-color="#281321"/>
+      <stop offset="1" stop-color="#3d232d"/>
+    </linearGradient>
+    <radialGradient id="light" cx=".77" cy=".4" r=".55">
+      <stop stop-color="#ad7669" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#ad7669" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="water" x2="0" y2="1">
+      <stop stop-color="#271722"/>
+      <stop offset="1" stop-color="#140d16"/>
+    </linearGradient>
+    <linearGradient id="water-edge">
+      <stop stop-color="#000"/>
+      <stop offset=".23" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="reflection-edge"><rect x="555" y="185" width="445" height="65" fill="url(#water-edge)"/></mask>
+    <mask id="crescent">
+      <circle cx="794" cy="71" r="40" fill="#fff"/>
+      <circle cx="806" cy="63" r="38" fill="#000"/>
+    </mask>
+    <linearGradient id="gold" x2="1" y2=".6">
+      <stop stop-color="#c99166"/>
+      <stop offset=".54" stop-color="#efd4a0"/>
+      <stop offset="1" stop-color="#9b634e"/>
+    </linearGradient>
+    <clipPath id="panel"><rect width="1000" height="250" rx="15"/></clipPath>
+    <path id="arch" d="M0 70V31C0 17 12 9 24 0c12 9 24 17 24 31v39"/>
+    <path id="leaf" d="M0 0c-4-8-8-8-8-3s4 5 8 3c4 2 8 2 8-3S4-8 0 0Z"/>
+  </defs>
+  <g clip-path="url(#panel)">
+    <rect width="1000" height="250" fill="url(#night)"/>
+    <rect width="1000" height="250" fill="url(#light)"/>
+    <circle cx="794" cy="71" r="56" fill="none" stroke="#d4ac83" stroke-opacity=".15"/>
+    <circle cx="794" cy="71" r="40" fill="#dfba94" fill-opacity=".94" mask="url(#crescent)"/>
+    <g fill="#e0b78a">
+      <path d="M734 43v14m-7-7h14m155-22v14m-7-7h14" stroke="#e0b78a" stroke-width="1" opacity=".65"/>
+      <circle cx="689" cy="72" r="1.25" opacity=".8"/>
+      <circle cx="867" cy="53" r="1.2" opacity=".7"/>
+      <circle cx="945" cy="62" r="1" opacity=".9"/>
+      <circle cx="920" cy="72" r="1.3" opacity=".5"/>
+    </g>
+    <path d="M568 176h55v-23h21v-8h20v-10h17v-19h21v60h28v-45h22v-17h18v-8h68v-15h24v-18h32v12h15v-11h17v17h14v-8h27v14h33V185H568Z" fill="#23131e"/>
+    <g fill="none" stroke="#b78b6a" stroke-width="1.4" opacity=".66">
+      <use href="#arch" x="704" y="120"/>
+      <use href="#arch" x="760" y="109"/>
+      <use href="#arch" x="816" y="99"/>
+      <use href="#arch" x="872" y="91"/>
+      <use href="#arch" x="928" y="96"/>
+      <path d="M704 151h48m8-11h48m8-10h48m8-8h48m8 5h48M676 181h324"/>
+      <path d="M728 150v36m56-47v47m56-56v56m56-64v64m56-58v58" opacity=".6"/>
+    </g>
+    <g fill="#b78b6a" opacity=".65">
+      <use href="#leaf" x="728" y="145"/>
+      <use href="#leaf" x="784" y="134"/>
+      <use href="#leaf" x="840" y="124"/>
+      <use href="#leaf" x="896" y="116"/>
+      <use href="#leaf" x="952" y="121"/>
+    </g>
+    <rect x="555" y="185" width="445" height="65" fill="url(#water)" mask="url(#reflection-edge)"/>
+    <g fill="none" stroke="#cc9c75" stroke-linecap="round" opacity=".4">
+      <path d="M652 191h98m12 0h72m14 0h101m-325 10h84m11 0h38m25 0h97m38 0h71m-335 11h30m42 0h126m22 0h77m-313 11h49m48 0h50m62 0h27m-176 10h107m40 0h36"/>
+      <path d="M772 196h56m-41 12h53m-72 9h46m-32 11h45" stroke="#e9bd91"/>
+    </g>
+    <rect x="13" y="13" width="974" height="224" rx="8" fill="none" stroke="#a7755a" stroke-opacity=".64"/>
+    <path d="M33 34V28h19m896 0h19v6M33 215v6h19m896 0h19v-6" fill="none" stroke="#d5a77b" stroke-opacity=".82"/>
+    <path d="M63 68h78m-78 0 5-5m-5 5 5 5m76-5 5-5 5 5-5 5Z" fill="none" stroke="url(#gold)" stroke-width="1.4"/>
+    <text x="61" y="131" fill="#f6e8d0" font-family="Georgia, 'Times New Roman', serif" font-size="55" font-weight="700" letter-spacing="-.65">Gekkou no Carnevale</text>
+    <text x="64" y="168" fill="#edc995" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" letter-spacing="3.4">ENGLISH TRANSLATION PATCH</text>
+  </g>
+</svg>

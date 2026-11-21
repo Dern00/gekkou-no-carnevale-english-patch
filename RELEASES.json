@@ -1,0 +1,11 @@
+{
+  "releases": [
+    {
+      "version": "1.0",
+      "tag": "v1.0",
+      "asset": "Gekkou_no_Carnevale_English_Patch_v1.0.zip",
+      "size_bytes": 4511653,
+      "sha256": "4ddc488172624c5008052f52ac4556da92f0d67f17f18fab90fed3156191a90b"
+    }
+  ]
+}
