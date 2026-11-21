@@ -44,7 +44,7 @@ A new game gives you a clean English backlog. An existing save can retain the te
 
 ## Opening subtitles
 
-The installer adds Project 5’s timed subtitles to your own opening and copies the game’s original audio. It includes a portable renderer, so the only required input is your installed copy of the game. To upgrade from v1.0, run the v1.1 installer on the same game folder. [Opening subtitle details](OPENING-SUBTITLES.md).
+The installer now adds timed English and romanized Japanese subtitles to the opening automatically. It copies the game’s original audio and includes a portable renderer. To upgrade from v1.0, run the v1.1 installer on the same game folder. [Opening subtitle details](OPENING-SUBTITLES.md).
 
 ## Removing the patch
 
@@ -58,6 +58,6 @@ The release includes a SHA-256 checksum for the ZIP. This repository contains th
 
 ## Credits
 
-Original game, story, artwork, music, and branding by **Nitroplus** and their respective creators. This is an unofficial fan translation. Opening subtitles are by **Project 5**. [Original game page](https://www.nitroplus.co.jp/game/12-carnevale/).
+Original game, story, artwork, music, and branding by **Nitroplus** and their respective creators. This is an unofficial fan translation. [Original game page](https://www.nitroplus.co.jp/game/12-carnevale/).
 
 The bundled renderer uses [FFmpeg](https://ffmpeg.org/) under the LGPL v2.1 or later. [Corresponding FFmpeg source](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/ffmpeg-9.1.tar.xz) · [Build instructions](FFMPEG-BUILD.md).

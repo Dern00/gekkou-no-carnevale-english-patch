@@ -11,7 +11,7 @@
 
 - The English overlay reconciles all 65,958 translated story and choice records across 417 scenario scripts.
 - The installer’s engine delta reproduces the DLL used in the gameplay tests. Both changes from the September 2026 Windows menu crash fix match the earlier fixed DLL.
-- The optional opening helper was tested with the Project 5 M4V and a verified stock opening. FFmpeg decoded the resulting movie successfully, the original MP2 audio stream matched byte for byte, and Restore brought back the original movie’s SHA-256.
+- The optional v1.0 opening helper was tested with the earlier subtitled M4V and a verified stock opening. FFmpeg decoded the resulting movie successfully, the original MP2 audio stream matched byte for byte, and Restore brought back the original movie’s SHA-256.
 
 ## Installer
 
