@@ -1,17 +1,20 @@
 Gekkou no Carnevale English Patch v1.1
-Manual installation
+Combined manual installation
 
-1. Close the game. If you have v1.00, apply Nitroplus's official v1.01
-   update first. https://www.nitroplus.co.jp/support/sp12/374.php
-2. Back up system.dll and any existing 0script.pak from the folder
-   containing GekkounoCarnevale.exe.
-3. Extract 0script.pak and system.dll directly beside GekkounoCarnevale.exe
-   and accept replacement when prompted.
+Use a copy of the original Japanese Windows game, v1.00 or v1.01.
+The ZIP includes the official v1.01 archives and the two English patch
+files, so a fresh v1.00 installation can be patched in one step.
+
+1. Close the game.
+2. In the folder containing GekkounoCarnevale.exe, back up any existing
+   0cg.pak, script.pak, system.pak, 0script.pak, and system.dll.
+3. Extract all five files beside GekkounoCarnevale.exe. Accept
+   replacement when Windows prompts.
 4. Launch GekkounoCarnevale.exe as usual.
 
-The manual ZIP leaves the opening movie as-is.
-To remove the patch, close the game and restore the backed-up files.
-If the folder had no 0script.pak before, remove the one you added.
+The ZIP leaves the installed opening movie as-is.
+To remove the patch, close the game and restore the files you backed up.
+Remove any files from the ZIP that were absent before installation.
 
 Release page
 https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/tag/v1.1

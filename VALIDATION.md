@@ -1,9 +1,10 @@
 # Patch validation
 
-## v1.1 manual ZIP
+## v1.1 combined manual ZIP
 
-- The ZIP contains exactly `0script.pak` and `system.dll`. Their SHA-256 digests match the previously tested English game files, including the September menu crash fix.
-- Microsoft Defender's custom scan reported no detections for the ZIP or the two extracted files.
+- The three official archives match Nitroplus’s v1.01 updater byte for byte. The two English files match the previously tested patch, including the September menu crash fix.
+- After extraction over the corresponding v1.00 files in an isolated test folder, all five SHA-256 digests matched the tested v1.01 installation.
+- Microsoft Defender’s custom scan reported no detections for the ZIP or the five extracted files.
 
 ## Earlier v1.1 installer tests
 

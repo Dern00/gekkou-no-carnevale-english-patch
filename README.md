@@ -4,10 +4,10 @@
 
 # Gekkou no Carnevale English Patch
 
-A complete English retranslation of **Gekkou no Carnevale** (月光のカルネヴァーレ), Nitroplus’s original Japanese visual novel for Windows. **v1.1** is available as a two-file manual patch.
+A complete English retranslation of **Gekkou no Carnevale** (月光のカルネヴァーレ), Nitroplus’s original Japanese visual novel for Windows. **v1.1** is available as a five-file manual patch that includes Nitroplus’s official v1.01 update.
 
 <p align="center">
-  <a href="https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/Gekkou_no_Carnevale_English_Patch_v1.1_Manual.zip"><img src="download.svg" alt="Download v1.1" width="250" height="52"></a>
+  <a href="https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/Gekkou_no_Carnevale_English_Patch_v1.1_Manual_Combined.zip"><img src="download.svg" alt="Download v1.1" width="250" height="52"></a>
 </p>
 
 [Installation](#installation) · [Existing saves](#existing-saves) · [Removing the patch](#removing-the-patch) · [Report an issue](https://github.com/Dern00/gekkou-no-carnevale-english-patch/issues)
@@ -22,14 +22,16 @@ A complete English retranslation of **Gekkou no Carnevale** (月光のカルネ�
 
 ## Requirements
 
-- The original Japanese Windows release from Nitroplus, with the official **v1.01** update.
+- The original Japanese Windows release from Nitroplus, either **v1.00** or **v1.01**.
 - A Windows environment that can already launch your copy of the Japanese game. The patch was tested on Windows 11. [Nitroplus’s support page](https://www.nitroplus.co.jp/support/sp12/) covers the original game.
 
 ## Installation
 
-1. Close the game. If you have v1.00, apply Nitroplus's official update first. [Official v1.01 update](https://www.nitroplus.co.jp/support/sp12/374.php)
-2. In the folder containing `GekkounoCarnevale.exe`, back up `system.dll` and any existing `0script.pak`.
-3. Extract both files from the manual ZIP directly beside `GekkounoCarnevale.exe`. Accept replacement when Windows prompts. [Download the v1.1 manual ZIP](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/Gekkou_no_Carnevale_English_Patch_v1.1_Manual.zip)
+The ZIP includes Nitroplus’s three v1.01 archives, `0cg.pak`, `script.pak`, and `system.pak`, plus the English patch’s `0script.pak` and `system.dll`. You can extract it directly over a fresh Japanese v1.00 installation in one step. [Nitroplus v1.01 update notes](https://www.nitroplus.co.jp/support/sp12/374.php)
+
+1. Close the game.
+2. In the folder containing `GekkounoCarnevale.exe`, back up any existing copies of the five files listed above.
+3. Extract all five files from the combined ZIP directly beside `GekkounoCarnevale.exe`. Accept replacement when Windows prompts. [Download the combined v1.1 ZIP](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/Gekkou_no_Carnevale_English_Patch_v1.1_Manual_Combined.zip)
 4. Launch `GekkounoCarnevale.exe` as usual.
 
 The manual patch leaves the installed opening movie as-is. A stock installation keeps its original Japanese opening.
@@ -40,13 +42,13 @@ A new game gives you a clean English backlog. An existing save can retain the te
 
 ## Removing the patch
 
-Close the game and restore the files you backed up. If your game folder originally had no `0script.pak`, remove the one you added.
+Close the game and restore the files you backed up. Remove any files from the ZIP that were absent before installation. On a fresh v1.00 copy, those are `0cg.pak` and `0script.pak`.
 
 ## Feedback and verification
 
 If you report a bug, include the patch version, the surrounding dialogue or menu, and steps to reproduce it. A screenshot is helpful. Mention whether it happened after loading an existing save. [Open an issue](https://github.com/Dern00/gekkou-no-carnevale-english-patch/issues).
 
-The release includes a SHA-256 checksum for the manual ZIP. [Validation](VALIDATION.md).
+The release includes a SHA-256 checksum for the combined ZIP. [Validation](VALIDATION.md).
 
 ## Credits
 
