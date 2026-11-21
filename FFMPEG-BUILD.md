@@ -1,8 +1,8 @@
-# Bundled FFmpeg renderer
+# FFmpeg renderer for the withdrawn installer
 
-The installer uses FFmpeg 9.1 under the GNU Lesser General Public License, version 2.1 or later. It runs the portable executable during installation to add subtitles to the original opening. The original MPEG audio is copied.
+The withdrawn installer used FFmpeg 9.1 under the GNU Lesser General Public License, version 2.1 or later. It ran the portable executable during installation to add subtitles to the original opening. It copied the original MPEG audio. The current manual patch leaves the opening movie as installed.
 
-The release includes the unmodified `ffmpeg-9.1.tar.xz` source archive, the LGPL license text, and these build instructions. Upstream source and documentation are available from [FFmpeg](https://ffmpeg.org/download.html).
+The renderer was built from the unmodified FFmpeg 9.1 source archive. Upstream source and documentation are available from [FFmpeg](https://ffmpeg.org/download.html).
 
 Build from the extracted upstream source with a shell, GNU Make, and an i686 MinGW-w64 toolchain on PATH.
 

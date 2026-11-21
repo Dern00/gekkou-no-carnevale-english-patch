@@ -31,10 +31,10 @@ The ZIP includes Nitroplus’s three v1.01 archives, `0cg.pak`, `script.pak`, an
 
 1. Close the game.
 2. In the folder containing `GekkounoCarnevale.exe`, back up any existing copies of the five files listed above.
-3. Extract all five files from the combined ZIP directly beside `GekkounoCarnevale.exe`. Accept replacement when Windows prompts. [Download the combined v1.1 ZIP](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/Gekkou_no_Carnevale_English_Patch_v1.1_Manual_Combined.zip)
+3. Extract the five game files from the combined ZIP directly beside `GekkounoCarnevale.exe`. Accept replacement when Windows prompts. [Download the combined v1.1 ZIP](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/Gekkou_no_Carnevale_English_Patch_v1.1_Manual_Combined.zip)
 4. Launch `GekkounoCarnevale.exe` as usual.
 
-The manual patch leaves the installed opening movie as-is. A stock installation keeps its original Japanese opening.
+The ZIP includes a `README.txt` with installation and removal instructions. The manual patch leaves the installed opening movie as-is. A stock installation keeps its original Japanese opening.
 
 ## Existing saves
 
