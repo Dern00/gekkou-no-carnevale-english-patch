@@ -1,4 +1,4 @@
-Gekkou no Carnevale English Patch v1.0
+Gekkou no Carnevale English Patch v1.1
 
 Install
 
@@ -34,9 +34,14 @@ combined patch folder for restoration.
 
 Opening subtitles
 
-OPENING-SUBTITLES.md explains the optional local helper. It requires
-Subtitled Opening.m4v from Project 5's December 2020 translation extras
-and FFmpeg. The helper has a separate restore command for the movie.
+Install patch also adds Project 5's timed English and romanized Japanese
+subtitles to your original opening. The portable renderer is included.
+Restore original files restores the opening if this installer changed it.
+See OPENING-SUBTITLES.md for details.
+
+The portable renderer is FFmpeg 9.1, licensed under the LGPL v2.1 or later.
+See FFMPEG-BUILD.md for build instructions. The corresponding source archive
+is attached to the GitHub v1.1 release.
 
 Feedback
 

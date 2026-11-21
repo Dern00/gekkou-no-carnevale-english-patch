@@ -1,6 +1,13 @@
-# v1.0 validation
+# Patch validation
 
-## Patch contents
+## v1.1 opening installer
+
+- The new installer was tested on clean v1.00 and v1.01 copies and an upgrade from v1.0. Repeat installs returned the same movie, and Restore returned the exact original movie in all three cases.
+- The rendered file has the same 3,163 video frames, 800 × 608 dimensions, and duration as the original. Its MP2 audio is identical. All three installs produced the same output checksum using the portable FFmpeg build.
+- An isolated copy of the game displayed both subtitle tracks and resumed the script after the full opening played without input.
+- The installed English engine and scenario overlay match the tested v1.0 files, including both sites in the September Windows menu crash fix.
+
+## v1.0 patch contents
 
 - The English overlay reconciles all 65,958 translated story and choice records across 417 scenario scripts.
 - The installer’s engine delta reproduces the DLL used in the gameplay tests. Both changes from the September 2026 Windows menu crash fix match the earlier fixed DLL.

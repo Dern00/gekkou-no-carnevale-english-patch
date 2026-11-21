@@ -4,10 +4,10 @@
 
 # Gekkou no Carnevale English Patch
 
-A complete English retranslation of **Gekkou no Carnevale** (月光のカルネヴァーレ), Nitroplus’s original Japanese visual novel for Windows. **v1.0** is the first public release.
+A complete English retranslation of **Gekkou no Carnevale** (月光のカルネヴァーレ), Nitroplus’s original Japanese visual novel for Windows. **v1.1** integrates the subtitled opening into the installer.
 
 <p align="center">
-  <a href="https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/tag/v1.0"><img src="download.svg" alt="Download v1.0" width="250" height="52"></a>
+  <a href="https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/Gekkou_no_Carnevale_English_Patch_v1.1.zip"><img src="download.svg" alt="Download v1.1" width="250" height="52"></a>
 </p>
 
 [Installation](#installation) · [Existing saves](#existing-saves) · [Opening subtitles](#opening-subtitles) · [Report an issue](https://github.com/Dern00/gekkou-no-carnevale-english-patch/issues)
@@ -16,6 +16,7 @@ A complete English retranslation of **Gekkou no Carnevale** (月光のカルネ�
 
 - A new translation from the Japanese v1.01 script covering all routes, choices, and endings.
 - English menus, settings, interface artwork, and the all-endings card.
+- Opening movie subtitles in romanized Japanese and English.
 - English word wrapping, taller boxes for long passages, and ruby readings in both the story and the backlog.
 - A remembered **Stop voice on click** option in **Settings → Text**. Turn it off to let voices finish over narration, or on to cut the current voice when you advance.
 - The September 2026 crash fix for Windows menu input.
@@ -29,7 +30,7 @@ A complete English retranslation of **Gekkou no Carnevale** (月光のカルネ�
 ## Installation
 
 1. Close the game and back up your saves.
-2. Download **Gekkou_no_Carnevale_English_Patch_v1.0.zip** from [Releases](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/tag/v1.0). Extract the entire ZIP outside the game folder.
+2. Download **Gekkou_no_Carnevale_English_Patch_v1.1.zip** from [Releases](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/tag/v1.1). Extract the entire ZIP outside the game folder.
 3. Run **Gekkou no Carnevale English Patch.exe**. Select **GekkounoCarnevale.exe** in the game folder and click **Install patch**.
 4. Launch **GekkounoCarnevale.exe** from that folder.
 
@@ -43,18 +44,20 @@ A new game gives you a clean English backlog. An existing save can retain the te
 
 ## Opening subtitles
 
-The optional local helper uses **Subtitled Opening.m4v** from Project 5’s December 2020 translation extras. It converts the picture to the format the game expects, pairs it with the game’s original soundtrack, and verifies the backup before replacing the movie. You’ll need that M4V and FFmpeg. [Opening subtitle instructions](OPENING-SUBTITLES.md).
+The installer adds Project 5’s timed subtitles to your own opening and copies the game’s original audio. It includes a portable renderer, so the only required input is your installed copy of the game. To upgrade from v1.0, run the v1.1 installer on the same game folder. [Opening subtitle details](OPENING-SUBTITLES.md).
 
 ## Removing the patch
 
-Close the game, run the installer, select the same game folder, and click **Restore original files**. Keep the **Before Carnevale combined patch** folder until you no longer need to restore your files. The optional opening helper has its own restore command.
+Close the game, run the installer, select the same game folder, and click **Restore original files**. Keep the **Before Carnevale combined patch** folder until you no longer need to restore your files.
 
 ## Feedback and verification
 
 If you report a bug, include the patch version, the surrounding dialogue or menu, and steps to reproduce it. A screenshot is helpful. Mention whether it happened after loading an existing save. [Open an issue](https://github.com/Dern00/gekkou-no-carnevale-english-patch/issues).
 
-The release includes a SHA-256 checksum for the ZIP. This repository contains the installer and optional opening helper sources, documentation, and the release checksum. [Validation](VALIDATION.md).
+The release includes a SHA-256 checksum for the ZIP. This repository contains the installer source, caption timings, documentation, and release checksum. [Validation](VALIDATION.md).
 
 ## Credits
 
-Original game, story, artwork, music, and branding by **Nitroplus** and their respective creators. This is an unofficial fan translation. The optional opening helper supports subtitles from **Project 5**. [Original game page](https://www.nitroplus.co.jp/game/12-carnevale/).
+Original game, story, artwork, music, and branding by **Nitroplus** and their respective creators. This is an unofficial fan translation. Opening subtitles are by **Project 5**. [Original game page](https://www.nitroplus.co.jp/game/12-carnevale/).
+
+The bundled renderer uses [FFmpeg](https://ffmpeg.org/) under the LGPL v2.1 or later. [Corresponding FFmpeg source](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/ffmpeg-9.1.tar.xz) · [Build instructions](FFMPEG-BUILD.md).

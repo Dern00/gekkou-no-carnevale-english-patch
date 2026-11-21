@@ -11,8 +11,8 @@ using System.Security.Cryptography;
 using System.Windows.Forms;
 
 [assembly: AssemblyTitle("Gekkou no Carnevale English Patch")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
 
 internal static class CombinedInstaller
 {
@@ -28,6 +28,7 @@ internal static class CombinedInstaller
     private const string TestedEnglishOverlay = "d7a77b77250be50a7063058fc542da6d7c7d36ecbc5632c4b25072ee15fb1db5";
     private const string SubtitleMovie = "e2fdb2ccbd0c10493ba59ff22381c4e4e9867077631b9594e4f2933b3fbb2a27";
     private const int OpeningIndex = 5;
+    private const string OpeningUpgradeBackup = "opening-before-v1.1.mpg";
     private static readonly string[] Files = {
         "0cg.pak", "script.pak", "system.pak", "0script.pak", "system.dll", "mpeg/OP.mpg"
     };
@@ -225,9 +226,9 @@ internal static class CombinedInstaller
             var original = new string[Files.Length];
             for (int i = 0; i < Files.Length; i++)
             {
-                // Reserve the sixth receipt line for local pre-release backups.
-                if (i == OpeningIndex) { original[i] = "-"; continue; }
                 string file = Path.Combine(root, Files[i]);
+                // The optional v1.0 helper has its own original movie backup.
+                if (i == OpeningIndex && Hash(file) != Stock[i]) { original[i] = "-"; continue; }
                 original[i] = Hash(file);
                 if (original[i] == "-") continue;
                 string saved = Path.Combine(pending, Files[i]);
@@ -265,6 +266,55 @@ internal static class CombinedInstaller
         return false;
     }
 
+    private static bool HasEarlierSubtitles(string movie, string current)
+    {
+        if (current == SubtitleMovie) return true;
+        string folder = Path.GetDirectoryName(movie);
+        string receipt = Path.Combine(folder, "OP.subtitled.sha256");
+        string backup = Path.Combine(folder, "OP.before-subtitles.mpg");
+        RejectLink(receipt);
+        RejectLink(backup);
+        return File.Exists(receipt) && new FileInfo(receipt).Length <= 80 &&
+               File.ReadAllText(receipt).Trim() == current && Hash(backup) == Stock[OpeningIndex];
+    }
+
+    private static void RenderOpening(string source, ZipArchive archive, string stage, string destination)
+    {
+        string work = Path.Combine(stage, "opening");
+        Directory.CreateDirectory(work);
+        foreach (var asset in archive.Entries)
+        {
+            if (!asset.FullName.StartsWith("opening/", StringComparison.Ordinal)) continue;
+            if (asset.FullName != "opening/" + asset.Name || asset.Name.Length == 0)
+                throw new InvalidDataException("Invalid opening subtitle asset.");
+            using (var input = asset.Open())
+            using (var output = File.Create(Path.Combine(work, asset.Name))) input.CopyTo(output);
+        }
+        string stock = Path.Combine(work, "stock.mpg");
+        Copy(source, stock);
+        Check(stock, Stock[OpeningIndex]);
+        var command = new ProcessStartInfo {
+            FileName = Path.Combine(work, "ffmpeg.exe"),
+            WorkingDirectory = work,
+            Arguments = File.ReadAllText(Path.Combine(work, "arguments.txt")),
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+        using (var process = Process.Start(command))
+        {
+            if (process == null) throw new IOException("Could not start the opening subtitle renderer.");
+            if (!process.WaitForExit(180000))
+            {
+                process.Kill();
+                process.WaitForExit();
+                throw new IOException("The opening subtitle renderer timed out.");
+            }
+            if (process.ExitCode != 0)
+                throw new IOException("The opening subtitle renderer stopped before it could finish.");
+        }
+        File.Move(Path.Combine(work, "subtitled.mpg"), destination);
+    }
+
     private static void StagePatch(string root, string backup, string stage, string updater,
                                    ZipArchive archive, int i, string next)
     {
@@ -285,6 +335,11 @@ internal static class CombinedInstaller
             var entry = archive.GetEntry(entryName);
             if (entry == null) throw new IOException("The installer needs a supported original system.dll.");
             using (var delta = entry.Open()) BinaryDelta.Apply(source, delta, next);
+            return;
+        }
+        if (i == OpeningIndex)
+        {
+            RenderOpening(Path.Combine(root, Files[i]), archive, stage, next);
             return;
         }
         using (var input = archive.GetEntry(Files[i]).Open())
@@ -312,24 +367,38 @@ internal static class CombinedInstaller
             bool keepStage = false;
             try
             {
+                string movie = Path.Combine(root, Files[OpeningIndex]);
+                RejectLink(Path.Combine(root, "mpeg"));
+                RejectLink(movie);
                 bool firstInstall = !Directory.Exists(backup);
                 string[] original = GetOriginals(root, backup, stage, restore);
+                string upgradeBackup = Path.Combine(backup, OpeningUpgradeBackup);
+                RejectLink(upgradeBackup);
+                bool upgradeHasOpeningBackup = File.Exists(upgradeBackup);
+                if (upgradeHasOpeningBackup)
+                {
+                    Check(upgradeBackup, Stock[OpeningIndex]);
+                    if (original[OpeningIndex] == "-") original[OpeningIndex] = Stock[OpeningIndex];
+                }
+                string openingBefore = Hash(movie);
                 string[] desired = (string[])(restore ? original : patched).Clone();
                 string[] before = new string[Files.Length];
                 bool[] changed = new bool[Files.Length];
-                int count = OpeningIndex;
-                if (restore && original[OpeningIndex] != "-")
-                {
-                    RejectLink(Path.Combine(root, "mpeg"));
-                    RejectLink(Path.Combine(root, Files[OpeningIndex]));
-                    count = Files.Length;
-                }
+                int count = restore ? (original[OpeningIndex] == "-" ? OpeningIndex : Files.Length)
+                                    : (HasEarlierSubtitles(movie, openingBefore) ? OpeningIndex : Files.Length);
+                bool saveUpgradeOpening = !firstInstall && !restore && original[OpeningIndex] == "-" &&
+                    count == Files.Length && openingBefore == Stock[OpeningIndex];
+                string stagedUpgradeBackup = Path.Combine(stage, OpeningUpgradeBackup);
                 for (int i = 0; i < count; i++)
                 {
                     string file = Path.Combine(root, Files[i]);
                     before[i] = Hash(file);
                     if (before[i] != desired[i] && !IsKnownSource(i, before[i], patched[i]))
+                    {
+                        if (i == OpeningIndex)
+                            throw new IOException("The opening movie is missing or has an unrecognized modification. Use the original mpeg\\OP.mpg or the opening installed by this patch.");
                         throw new IOException("The file has changed since it was backed up: " + file);
+                    }
                 }
                 for (int i = 0; i < count; i++)
                 {
@@ -343,9 +412,19 @@ internal static class CombinedInstaller
                     }
                     if (desired[i] == "-") continue;
                     string next = Path.Combine(stage, "next" + i);
-                    if (restore) Copy(Path.Combine(backup, Files[i]), next);
+                    if (restore)
+                    {
+                        string saved = Path.Combine(backup, Files[i]);
+                        if (i == OpeningIndex && !File.Exists(saved)) saved = upgradeBackup;
+                        Copy(saved, next);
+                    }
                     else StagePatch(root, backup, stage, updater, archive, i, next);
                     Check(next, desired[i]);
+                }
+                if (saveUpgradeOpening)
+                {
+                    Copy(movie, stagedUpgradeBackup);
+                    Check(stagedUpgradeBackup, Stock[OpeningIndex]);
                 }
                 try
                 {
@@ -353,6 +432,7 @@ internal static class CombinedInstaller
                     for (int i = 0; i < count; i++)
                         Check(Path.Combine(root, Files[i]), before[i]);
                     if (firstInstall) Directory.Move(Path.Combine(stage, "originals"), backup);
+                    if (saveUpgradeOpening) File.Move(stagedUpgradeBackup, upgradeBackup);
                     for (int i = 0; i < count; i++)
                     {
                         if (before[i] == desired[i]) continue;
@@ -418,7 +498,7 @@ internal static class CombinedInstaller
 
         internal InstallerWindow()
         {
-            Text = "Gekkou no Carnevale English Patch v1.0";
+            Text = "Gekkou no Carnevale English Patch v1.1";
             Font = SystemFonts.MessageBoxFont;
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(550, 182);
@@ -440,7 +520,7 @@ internal static class CombinedInstaller
             string here = AppDomain.CurrentDomain.BaseDirectory;
             if (File.Exists(Path.Combine(here, GameExe))) folder.Text = here;
             status.SetBounds(16, 79, 520, 48);
-            status.Text = "Installs the English patch and gets the official 1.01 update if needed. Close the game before installing.";
+            status.Text = "Installs the English patch and opening subtitles. Gets the official 1.01 update if needed. Close the game before installing.";
             install.Text = "Install patch"; install.SetBounds(422, 132, 112, 33);
             restore.Text = "Restore original files"; restore.SetBounds(258, 132, 155, 33);
             install.Click += delegate { Run(false); };
@@ -459,7 +539,7 @@ internal static class CombinedInstaller
                 Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             busy = true;
             folder.Enabled = browse.Enabled = install.Enabled = restore.Enabled = false;
-            status.Text = undo ? "Restoring and verifying game files…" : "Backing up, installing and verifying game files…";
+            status.Text = undo ? "Restoring and verifying game files…" : "Installing the patch and rendering opening subtitles. This can take a minute…";
             try
             {
                 string localUpdater = null;
