@@ -34,8 +34,8 @@ combined patch folder for restoration.
 
 Opening subtitles
 
-Install patch adds timed English and romanized Japanese subtitles to
-the opening automatically. The portable renderer is included.
+The installer now adds timed English and romanized Japanese subtitles
+to the opening automatically. The portable renderer is included.
 Restore original files restores the opening if this installer changed it.
 See OPENING-SUBTITLES.md for details.
 
