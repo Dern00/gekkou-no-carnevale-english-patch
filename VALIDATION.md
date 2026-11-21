@@ -1,6 +1,11 @@
 # Patch validation
 
-## v1.1 opening installer
+## v1.1 manual ZIP
+
+- The ZIP contains exactly `0script.pak` and `system.dll`. Their SHA-256 digests match the previously tested English game files, including the September menu crash fix.
+- Microsoft Defender's custom scan reported no detections for the ZIP or the two extracted files.
+
+## Earlier v1.1 installer tests
 
 - The new installer was tested on clean v1.00 and v1.01 copies and an upgrade from v1.0. Repeat installs returned the same movie, and Restore returned the exact original movie in all three cases.
 - The rendered file has the same 3,163 video frames, 800 × 608 dimensions, and duration as the original. Its MP2 audio is identical. All three installs produced the same output checksum using the portable FFmpeg build.
