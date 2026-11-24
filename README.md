@@ -36,6 +36,12 @@ The ZIP includes Nitroplus’s three v1.01 archives, `0cg.pak`, `script.pak`, an
 
 The ZIP includes a `README.txt` with installation and removal instructions. The manual patch leaves the installed opening movie as-is. A stock installation keeps its original Japanese opening.
 
+## Optional locale workaround
+
+If the game shows stray `@` characters, garbled text, or broken word wrapping on a non-Japanese Windows locale, install the v1.1 manual patch first. Close the game, then download [`version.dll`](https://github.com/Dern00/gekkou-no-carnevale-english-patch/releases/download/v1.1/version.dll) and put it beside `GekkounoCarnevale.exe`. Keep the patch’s `system.dll` in place. Launch the game directly. To undo the workaround, close the game and remove the added `version.dll`.
+
+The DLL is optional. If your game displays correctly, use the manual ZIP on its own. This build comes from [jensgrunzer’s posted source](https://github.com/Dern00/gekkou-no-carnevale-english-patch/issues/1#issuecomment-7066653794) and was tested with v1.1 on Windows 11 using native Japanese locale and a forced English code page for the game process.
+
 ## Existing saves
 
 A new game gives you a clean English backlog. An existing save can retain the text that was on screen when it was made, along with older backlog entries. The engine fixes the textbox dimensions on older saves that use the six reassigned layouts. Loading and advancing from selected older saves was tested. If a save has trouble resuming, keep it and try starting from an earlier point.
